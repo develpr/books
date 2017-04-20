@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::group(['namespace' => 'Auth'], function () {
-    Route::post('oauth/tokens', 'LoginController@login');
+Route::group(['middleware' => ['api']], function ($router) {
+    $router->post('register', 'Auth\RegisterController@register');
 });
 
 Route::group(['middleware' => ['auth:api']], function ($router) {
+
     $router->get('oauth/scopes', [
         'uses' => '\Laravel\Passport\Http\Controllers\ScopeController@all',
     ]);
@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth:api']], function ($router) {
     $router->delete('oauth/tokens/{token_id}', [
         'uses' => '\Laravel\Passport\Http\Controllers\PersonalAccessTokenController@destroy',
     ]);
+
 
     $router->get('users/me', function(Request $request) {
         return $request->user();
