@@ -16,8 +16,7 @@ sudo apt-get install -y unzip vim git-core curl wget build-essential python-soft
 sudo apt-get install git -y
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password password'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password password'
-sudo wget http://dev.mysql.com/get/mysql-apt-config_0.6.0-1_all.deb
-sudo dpkg -i mysql-apt-config_0.6.0-1_all.deb
+
 sudo apt-get -y update
 sudo apt-get -y install mysql-server --force-yes
 
