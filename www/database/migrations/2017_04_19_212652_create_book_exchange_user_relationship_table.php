@@ -29,6 +29,7 @@ class CreateBookExchangeUserRelationshipTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('book_exchange_user_relationships');
+
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Books\Http\Controllers\Auth;
 
-use App\User;
-use App\Http\Controllers\Controller;
+use Books\User;
+use Books\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -47,9 +47,9 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $test = "OK";
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'first_name' => 'required|max:255',
+            'last_name' => 'max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6',
         ]);
@@ -63,14 +63,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $test = "HI";
         $user = User::create([
-            'name' => $data['name'],
+            'first_name' => 'required|max:255',
+            'last_name' => 'max:255',
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        $test = "hi";
-
         return $user;
     }
 }

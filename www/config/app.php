@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Books\Providers\AppServiceProvider::class,
+        Books\Providers\AuthServiceProvider::class,
+        // Books\Providers\BroadcastServiceProvider::class,
+        Books\Providers\EventServiceProvider::class,
+        Books\Providers\RouteServiceProvider::class,
 
         \Laravel\Passport\PassportServiceProvider::class,
 
