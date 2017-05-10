@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['api']], function ($router) {
     $router->post('register', 'Auth\RegisterController@register');
 
-    $router->post('oauth/tokens', '\Books\Http\Controllers\Auth\LoginController@login');
+    $router->post('oauth/tokens', '\Books\Http\Controllers\Auth\TokenController@login');
 });
 
 Route::group(['middleware' => ['auth:api']], function ($router) {
@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth:api']], function ($router) {
 
     //Exchanges
 //    $router->get('')
+
+    $router->delete('oauth/tokens/mine', '\Books\Http\Controllers\Auth\TokenController@destroy');
 
 
     $router->get('oauth/scopes', [
@@ -41,5 +43,13 @@ Route::group(['middleware' => ['auth:api']], function ($router) {
 
     $router->get('users/me', function(Request $request) {
         return $request->user();
+    });
+
+    $router->put('users/me', function(Request $request) {
+        $user = $request->user();
+        $user->first_name = $request->get('firstname');
+        $user->last_name = $request->get('lastname');
+        $user->save();
+        return $user;
     });
 });

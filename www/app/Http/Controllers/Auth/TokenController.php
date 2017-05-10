@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class TokenController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -99,7 +99,6 @@ class LoginController extends Controller
     }
 
     public function destroy(Request $request) {
-        $test = "HI";
         foreach($request->user()->tokens as $token) {
             $token->revoke();
         }
