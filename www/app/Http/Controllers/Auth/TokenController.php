@@ -49,6 +49,7 @@ class TokenController extends Controller
      */
     public function login(Request $request)
     {
+
         $this->validateLogin($request);
 
 
@@ -62,6 +63,7 @@ class TokenController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
+
             $user = Auth::user();
             $token = null;
             if($user) {

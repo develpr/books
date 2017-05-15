@@ -1,5 +1,6 @@
 <?php
 
+use Books\Domain\BookType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +47,16 @@ Route::group(['middleware' => ['auth:api']], function ($router) {
     });
 
     $router->put('users/me', function(Request $request) {
+        /** @var \Books\User $user */
         $user = $request->user();
+
+        $test = $request->get('favorite_book_type');
+
+        $result = BookType::find($test);
+        if($result) {
+            $user->favoriteBookType()->associate($result);
+        }
+
         $user->first_name = $request->get('firstname');
         $user->last_name = $request->get('lastname');
         $user->save();

@@ -15,7 +15,7 @@ class CreateBookTypeTable extends Migration
     {
         Schema::create('book_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
+            $table->string('name');
         });
     }
 
