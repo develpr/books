@@ -17,6 +17,7 @@ class CreateOfficeTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('address_id');
+            $table->timestamps();
         });
     }
 

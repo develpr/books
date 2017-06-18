@@ -19,6 +19,7 @@ Route::group(['middleware' => ['api']], function ($router) {
     $router->post('register', 'Auth\RegisterController@register');
 
     $router->post('oauth/tokens', '\Books\Http\Controllers\Auth\TokenController@login');
+
 });
 
 Route::group(['middleware' => ['auth:api']], function ($router) {
@@ -62,4 +63,27 @@ Route::group(['middleware' => ['auth:api']], function ($router) {
         $user->save();
         return $user;
     });
+
+    /**
+     * Exchange management
+     */
+    $router->get('exchanges', [
+        'uses' => '\Books\Http\Controllers\BookExchangeController@allExchanges',
+    ]);
+
+    $router->get('exchanges/current', [
+        'uses' => '\Books\Http\Controllers\BookExchangeController@currentExchange',
+    ]);
+
+    $router->get('exchanges/previous', [
+        'uses' => '\Books\Http\Controllers\BookExchangeController@previousExchange',
+    ]);
+
+    /**
+     * Participation management
+     */
+    $router->get('participation/current', [
+        'uses' => '\Books\Http\Controllers\ParticipationController@getUsesCurrentExchangeParticipation',
+    ]);
+
 });

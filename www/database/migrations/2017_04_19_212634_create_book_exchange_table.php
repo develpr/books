@@ -19,6 +19,7 @@ class CreateBookExchangeTable extends Migration
             $table->string('comment');
             $table->dateTime('sign_up_by_date');
             $table->dateTime('send_by_date');
+            $table->timestamps();
         });
     }
 

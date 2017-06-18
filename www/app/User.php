@@ -2,6 +2,7 @@
 
 namespace Books;
 
+use Books\Domain\BookExchangeParticipation;
 use Books\Domain\BookType;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,6 +47,16 @@ class User extends Authenticatable
     public function favoriteBookType()
     {
         return $this->belongsTo(BookType::class, 'book_type_id');
+    }
+
+    public function senderParticipation()
+    {
+        return $this->hasMany(BookExchangeParticipation::class, 'sender_user_id');
+    }
+
+    public function receiverParticipation()
+    {
+        return $this->hasMany(BookExchangeParticipation::class, 'receiver_user_id');
     }
 
 }
